@@ -13,6 +13,11 @@ sample worlds supplied in the starter folder.
 """
 
 
+def move_4rows():
+    for i in range(4):
+        move()
+
+
 def turn_around():
     """
     This function turns the beeper around.
@@ -21,65 +26,35 @@ def turn_around():
     turn_left()
 
 
-def positive_column():
+def check_put_beeper():
     """
-    This function puts the beeper in the whole column. If it finds that the
-    column consisted of beeper before, it would come back without picking up
-    any beeper.
+    This function moves along the column, checks whether it contains the beeper,
+    puts the beeper if it does not contain one and comes back.
     """
-    while front_is_clear():
-        if no_beepers_present():
-            put_beeper()
-        move()
-    if no_beepers_present():
-        put_beeper()
-
-    turn_around()
-    while front_is_clear():
-        move()
-
     turn_left()
-
-
-def negative_column():
-    """
-    This function collects all the beeper while coming back that was put before,
-    if it finds that no prior beeper were present in the column.
-    """
-    turn_around()
     while front_is_clear():
         if beepers_present():
-            pick_beeper()
+            move()
+        else:
+            put_beeper()
+            move()
+    if front_is_blocked():
+        if no_beepers_present():
+            put_beeper()
+    turn_around()
+    while front_is_clear():
         move()
-
-    if beepers_present():
-        pick_beeper()
     turn_left()
 
 
 def main():
-
     """
-    Implements the functions to obtain the desired output in karel space.
+    Implements all the function to print the desired output in karel space.
     """
-    turn_left()
-    while front_is_clear():
-        if beepers_present():
-            positive_column()
-
-            if front_is_clear():
-                move()
-                main()
-        else:
-            put_beeper()
-            move()
-
-    if facing_north():
-        negative_column()
-
-    if front_is_clear():
-        move()
-        main()
+    for i in range(3):
+        check_put_beeper()
+        move_4rows()
+    check_put_beeper()
 
 
 if __name__ == "__main__":
