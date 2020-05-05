@@ -10,7 +10,12 @@ This program prints a series of random numbers in the
 range from MIN_RANDOM to MAX_RANDOM, inclusive
 """
 
+
 import random
+
+NUM_RANDOM = 10
+MIN_RANDOM = 0
+MAX_RANDOM = 100
 
 
 def main():
@@ -18,12 +23,10 @@ def main():
     It generates 10 random number between 0 to 100 and prints those
     to the screen.
     """
-    NUM_RANDOM = 10
-    MIN_RANDOM = 0
-    MAX_RANDOM = 100
+
     for i in range(NUM_RANDOM):
         rand = random.randint(MIN_RANDOM, MAX_RANDOM)
-        print(rand)\
+        print(rand) \
 
 
 
