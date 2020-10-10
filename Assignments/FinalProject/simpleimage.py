@@ -248,8 +248,8 @@ def main():
         pixel.green = 255
         pixel.blue = 0
 
-    # for pixel in image:
-    #     print(pixel)
+    for pixel in image:
+        print(pixel)
 
     # Set green stripe using pix access.
     pix = image._get_pix_(0, 0)
